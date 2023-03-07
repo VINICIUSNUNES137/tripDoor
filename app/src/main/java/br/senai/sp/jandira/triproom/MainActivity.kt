@@ -123,7 +123,7 @@ fun TripRoomScreen(){
                     backgroundColor = Color(207, 6, 240),
                     shape = RoundedCornerShape(topEnd = 12.dp )
                 ) {
-
+//aaaaaaaa
                 }
 
             }
