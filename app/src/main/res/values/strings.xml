@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">TripRoom</string>
+    <string name="login">Login</string>
+    <string name="please">Please sign in to continue</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="have_account">Dont have account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="create_new">Create a new account</string>
+    <string name="username">Username</string>
+    <string name="phone">Phone</string>
+    <string name="over">Over 18?</string>
+    <string name="create_account">Create account</string>
+    <string name="already_account">Already account?</string>
 </resources>
