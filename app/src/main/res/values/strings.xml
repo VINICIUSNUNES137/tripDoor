@@ -14,4 +14,5 @@
     <string name="over">Over 18?</string>
     <string name="create_account">Create account</string>
     <string name="already_account">Already account?</string>
+    <string name="title_activity_logged">LoggedActivity</string>
 </resources>

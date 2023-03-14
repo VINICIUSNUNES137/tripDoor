@@ -34,7 +34,7 @@ class SignUpActivity : ComponentActivity() {
     }
 }
 
-@Preview
+@Preview (showBackground = true, showSystemUi = true)
 @Composable
 fun SignUpScreen() {
 

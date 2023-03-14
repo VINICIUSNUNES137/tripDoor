@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
          }
     }
 }
-@Preview
+@Preview (showBackground = true, showSystemUi = true)
 @Composable
 fun TripRoomScreen() {
 
@@ -139,7 +139,10 @@ fun TripRoomScreen() {
                             .width(150.dp)
                             .height(64.dp),
                         colors = ButtonDefaults.buttonColors(Color(207, 1, 240)),
-                        onClick = {},
+                        onClick = {
+                            val intent = Intent(context, LoggedActivity::class.java)
+                            context.startActivity(intent)
+                        },
                         shape = RoundedCornerShape(16.dp)
                         ) {
                         Row() {

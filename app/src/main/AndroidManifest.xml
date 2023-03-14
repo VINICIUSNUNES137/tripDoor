@@ -12,6 +12,11 @@
         android:theme="@style/Theme.TripRoom"
         tools:targetApi="31">
         <activity
+            android:name=".LoggedActivity"
+            android:exported="false"
+            android:label="@string/title_activity_logged"
+            android:theme="@style/Theme.TripRoom" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false"
             android:label="@string/title_activity_sign_up"
