@@ -1,28 +1,17 @@
 package br.senai.sp.jandira.triproom
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.fonts.FontFamily
-import android.icu.text.AlphabeticIndex.Bucket.LabelType
 import android.os.Bundle
-import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
-import androidx.compose.foundation.interaction.DragInteraction
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -30,7 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.senai.sp.jandira.triproom.ui.theme.Shapes
+import br.senai.sp.jandira.triproom.components.BottomShape
+import br.senai.sp.jandira.triproom.components.TopShape
 import br.senai.sp.jandira.triproom.ui.theme.TripRoomTheme
 
 class MainActivity : ComponentActivity() {
@@ -62,15 +52,7 @@ fun TripRoomScreen() {
                     .height(40.dp), horizontalArrangement = Arrangement.End
             ) {
 
-                Card(
-                    modifier = Modifier
-                        .height(height = 40.dp)
-                        .width(width = 120.dp),
-                    backgroundColor = Color(207, 6, 240),
-                    shape = RoundedCornerShape(bottomStart = 16.dp)
-                ) {
-
-                }
+              TopShape()
 
             }
             //Spacer(modifier = Modifier.height(200.dp))
@@ -188,15 +170,7 @@ fun TripRoomScreen() {
                 verticalAlignment = Alignment.Bottom
             ) {
 
-                Card(
-                    modifier = Modifier
-                        .height(height = 40.dp)
-                        .width(width = 120.dp),
-                    backgroundColor = Color(207, 6, 240),
-                    shape = RoundedCornerShape(topEnd = 16.dp)
-                ) {
-//aaaaaaaa
-                }
+            BottomShape()
 
             }
         }

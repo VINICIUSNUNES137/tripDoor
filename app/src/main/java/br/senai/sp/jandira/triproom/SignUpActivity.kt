@@ -20,6 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.senai.sp.jandira.triproom.components.BottomShape
+import br.senai.sp.jandira.triproom.components.TopShape
 import br.senai.sp.jandira.triproom.ui.theme.TripRoomTheme
 
 class SignUpActivity : ComponentActivity() {
@@ -50,14 +52,7 @@ fun SignUpScreen() {
                     .height(40.dp), horizontalArrangement = Arrangement.End
             ) {
 
-                Card(
-                    modifier = Modifier
-                        .height(height = 40.dp)
-                        .width(width = 120.dp),
-                    backgroundColor = Color(207, 6, 240),
-                    shape = RoundedCornerShape(bottomStart = 16.dp)
-                ) {
-                }
+           TopShape()
             }
 
             Column(
@@ -194,15 +189,7 @@ fun SignUpScreen() {
                 verticalAlignment = Alignment.Bottom
             ) {
 
-                Card(
-                    modifier = Modifier
-                        .height(height = 40.dp)
-                        .width(width = 120.dp),
-                    backgroundColor = Color(207, 6, 240),
-                    shape = RoundedCornerShape(topEnd = 16.dp)
-                ) {
-//aaaaaaaa
-                }
+            BottomShape()
 
             }
 
