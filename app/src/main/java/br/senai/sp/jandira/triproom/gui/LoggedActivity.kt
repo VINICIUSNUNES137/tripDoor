@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.triproom
+package br.senai.sp.jandira.triproom.gui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -21,20 +21,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.triproom.ui.theme.TripRoomTheme
+import br.senai.sp.jandira.triproom.R
 
 class LoggedActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TripRoomTheme {
-                loggedScreen()            }
+                loggedScreen()
+            }
         }
     }
 }
 
-@Preview (showBackground = true, showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun loggedScreen(){
+fun loggedScreen() {
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
 
@@ -44,20 +46,28 @@ fun loggedScreen(){
                     contentDescription = "Paris",
                     modifier = Modifier.fillMaxWidth()
                 )
-                Column( modifier = Modifier.fillMaxHeight()) {
+                Column(modifier = Modifier.fillMaxHeight()) {
 
-                    Column(modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(13.dp),horizontalAlignment = Alignment.End) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(13.dp), horizontalAlignment = Alignment.End
+                    ) {
                         Card(shape = CircleShape, border = BorderStroke(2.dp, Color.White)) {
-                            Image(painter = painterResource(id = R.drawable.susanna_profile),
+                            Image(
+                                painter = painterResource(id = R.drawable.susanna_profile),
                                 contentDescription = "",
                                 Modifier.width(61.dp)
                             )
                         }
                         Column(Modifier.fillMaxSize()) {
                             Text(text = "You're in Paris", color = Color.White)
-                            Text(text = "My Trips", color = Color.White, fontWeight = FontWeight(900), fontSize = 32.sp)
+                            Text(
+                                text = "My Trips",
+                                color = Color.White,
+                                fontWeight = FontWeight(900),
+                                fontSize = 32.sp
+                            )
                         }
 
                     }

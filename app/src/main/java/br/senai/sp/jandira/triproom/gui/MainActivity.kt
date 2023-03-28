@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.triproom
+package br.senai.sp.jandira.triproom.gui
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.triproom.components.BottomShape
 import br.senai.sp.jandira.triproom.components.TopShape
 import br.senai.sp.jandira.triproom.ui.theme.TripRoomTheme
+import br.senai.sp.jandira.triproom.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,13 +32,14 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
-            TripRoomTheme{
+            TripRoomTheme {
                 TripRoomScreen()
             }
-         }
+        }
     }
 }
-@Preview (showBackground = true, showSystemUi = true)
+
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun TripRoomScreen() {
 
@@ -52,7 +54,7 @@ fun TripRoomScreen() {
                     .height(40.dp), horizontalArrangement = Arrangement.End
             ) {
 
-              TopShape()
+                TopShape()
 
             }
             //Spacer(modifier = Modifier.height(200.dp))
@@ -94,7 +96,13 @@ fun TripRoomScreen() {
                                 modifier = Modifier,
                                 tint = Color(206, 1, 240)
                             )
-                        })
+                        },
+                        colors = TextFieldDefaults.outlinedTextFieldColors(
+                            focusedBorderColor = Color(205, 1, 240),
+//                                unfocusedBorderColor = Color(207, 1, 240)
+                            focusedLabelColor = Color(207, 1, 240)
+                        )
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
                     OutlinedTextField(
                         value = "",
@@ -111,7 +119,15 @@ fun TripRoomScreen() {
                                 modifier = Modifier,
                                 tint = Color(206, 1, 240)
                             )
-                        })
+                        },
+                        colors = TextFieldDefaults
+                            .outlinedTextFieldColors(
+                                focusedBorderColor = Color(207, 1, 240),
+//                                unfocusedBorderColor = Color(207, 1, 240),
+                                focusedLabelColor = Color(207, 1, 240)
+
+                            )
+                    )
                 }
                 Spacer(modifier = Modifier.height(32.dp))
 
@@ -126,41 +142,49 @@ fun TripRoomScreen() {
                             context.startActivity(intent)
                         },
                         shape = RoundedCornerShape(16.dp)
-                        ) {
+                    ) {
                         Row() {
                             Text(
                                 text = stringResource(id = R.string.sign_in),
                                 fontSize = 18.sp,
                                 color = Color.White,
-                                fontWeight = FontWeight(900))
-                            Icon(painter = painterResource(id = R.drawable.arrow_forward_24), contentDescription = "Arrow right",
-                            tint = Color(255, 255, 255)
+                                fontWeight = FontWeight(900)
+                            )
+                            Icon(
+                                painter = painterResource(id = R.drawable.arrow_forward_24),
+                                contentDescription = "Arrow right",
+                                tint = Color(255, 255, 255)
                             )
                         }
                     }
 
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp),
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
-                    Text(text = stringResource(id = R.string.have_account),
-                        color = Color(160, 156, 156))
+                    Text(
+                        text = stringResource(id = R.string.have_account),
+                        color = Color(160, 156, 156)
+                    )
 
                     Spacer(modifier = Modifier.width(4.dp))
 
-                    Text(text = stringResource(id = R.string.sign_up),
+                    Text(
+                        text = stringResource(id = R.string.sign_up),
                         modifier = Modifier
                             .clickable {
                                 val intent = Intent(context, SignUpActivity::class.java)
                                 context.startActivity(intent)
 
-                        }, color = Color(207, 1, 240), fontWeight = FontWeight(800))
+                            }, color = Color(207, 1, 240), fontWeight = FontWeight(800)
+                    )
 
                 }
-                }
+            }
 
             Row(
                 modifier = Modifier
@@ -170,7 +194,7 @@ fun TripRoomScreen() {
                 verticalAlignment = Alignment.Bottom
             ) {
 
-            BottomShape()
+                BottomShape()
 
             }
         }
