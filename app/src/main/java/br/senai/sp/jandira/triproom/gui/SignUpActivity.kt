@@ -2,6 +2,7 @@ package br.senai.sp.jandira.triproom.gui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -28,10 +29,25 @@ import br.senai.sp.jandira.triproom.components.BottomShape
 import br.senai.sp.jandira.triproom.components.TopShape
 import br.senai.sp.jandira.triproom.ui.theme.TripRoomTheme
 import br.senai.sp.jandira.triproom.R
+import br.senai.sp.jandira.triproom.model.User
+import br.senai.sp.jandira.triproom.repository.UserRepository
 
 class SignUpActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val user = User(
+            username = "Maria Da Silva",
+            email = "maria@terra.com.br",
+            password = "12345",
+            phone = "(11)99999-9999",
+            isOver18 = true
+        )
+
+        val userRep = UserRepository(this)
+        var id = userRep.save(user)
+
+        Toast.makeText(this, "$id", Toast.LENGTH_LONG).show()
+
         setContent {
             TripRoomTheme {
                 // A surface container using the 'background' color from the theme
