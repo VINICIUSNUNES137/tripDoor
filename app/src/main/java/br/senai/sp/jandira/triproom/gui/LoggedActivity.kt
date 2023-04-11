@@ -46,7 +46,7 @@ fun loggedScreen() {
                     contentDescription = "Paris",
                     modifier = Modifier.fillMaxWidth()
                 )
-                Column(modifier = Modifier.fillMaxHeight()) {
+                Column(modifier = Modifier.height(200.dp), verticalArrangement = Arrangement.SpaceBetween) {
 
                     Column(
                         modifier = Modifier
@@ -60,7 +60,7 @@ fun loggedScreen() {
                                 Modifier.width(61.dp)
                             )
                         }
-                        Column(Modifier.fillMaxSize()) {
+                        Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
                             Text(text = "You're in Paris", color = Color.White)
                             Text(
                                 text = "My Trips",

@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -119,6 +120,7 @@ fun TripRoomScreen() {
                         value = passwordState,
                         shape = RoundedCornerShape(16.dp),
                         onValueChange = { passwordState = it },
+                        visualTransformation = PasswordVisualTransformation(),
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp),
@@ -233,7 +235,7 @@ fun authenticateUser(
         val intent = Intent(context, LoggedActivity::class.java)
         context.startActivity(intent)
     }else{
-        Toast.makeText(context, "Not exists", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Email or password incorrect!", Toast.LENGTH_LONG).show()
     }
 
 
