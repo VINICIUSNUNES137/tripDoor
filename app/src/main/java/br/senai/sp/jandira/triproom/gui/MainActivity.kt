@@ -1,14 +1,16 @@
 package br.senai.sp.jandira.triproom.gui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +25,7 @@ import br.senai.sp.jandira.triproom.components.BottomShape
 import br.senai.sp.jandira.triproom.components.TopShape
 import br.senai.sp.jandira.triproom.ui.theme.TripRoomTheme
 import br.senai.sp.jandira.triproom.R
+import br.senai.sp.jandira.triproom.repository.UserRepository
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +45,14 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun TripRoomScreen() {
+
+    var emailState by remember {
+        mutableStateOf("")
+    }
+
+    var passwordState by remember {
+        mutableStateOf("")
+    }
 
     val context = LocalContext.current
 
@@ -82,9 +93,9 @@ fun TripRoomScreen() {
                 //}
                 Column(modifier = Modifier.fillMaxWidth()) {
                     OutlinedTextField(
-                        value = "",
+                        value = emailState,
                         shape = RoundedCornerShape(16.dp),
-                        onValueChange = {},
+                        onValueChange = { emailState = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp),
@@ -105,9 +116,9 @@ fun TripRoomScreen() {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     OutlinedTextField(
-                        value = "",
+                        value = passwordState,
                         shape = RoundedCornerShape(16.dp),
-                        onValueChange = {},
+                        onValueChange = { passwordState = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp),
@@ -138,8 +149,13 @@ fun TripRoomScreen() {
                             .height(64.dp),
                         colors = ButtonDefaults.buttonColors(Color(207, 1, 240)),
                         onClick = {
-                            val intent = Intent(context, LoggedActivity::class.java)
-                            context.startActivity(intent)
+
+//                            val intent = Intent(context, LoggedActivity::class.java)
+//                            context.startActivity(intent)
+//
+                            authenticateUser(email = emailState, password = passwordState, context = context)
+
+
                         },
                         shape = RoundedCornerShape(16.dp)
                     ) {
@@ -200,5 +216,26 @@ fun TripRoomScreen() {
         }
 
     }
+}
+
+fun authenticateUser(
+    email: String,
+    password: String,
+    context: Context
+) {
+
+    val userRepository = UserRepository(context)
+
+    val user = userRepository.authenticate(email = email, password = password)
+
+    if (user != null){
+        Toast.makeText(context, "User alredy exists", Toast.LENGTH_LONG).show()
+        val intent = Intent(context, LoggedActivity::class.java)
+        context.startActivity(intent)
+    }else{
+        Toast.makeText(context, "Not exists", Toast.LENGTH_LONG).show()
+    }
+
+
 }
 
