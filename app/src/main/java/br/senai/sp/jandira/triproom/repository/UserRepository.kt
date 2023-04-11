@@ -9,8 +9,13 @@ class UserRepository(context: Context) {
     //variavel que representa o banco de dados
 
     private val db = TripDb.getDataBase(context)
-
+    // função responsável por inserir um usuario no banco
     fun save(user: User): Long{
         return db.userDao().save(user)
+    }
+
+    // função responsável por consultar um usuário do banco
+    fun findUserByEmail(email :String): User{
+        return db.userDao().findUserByEmail(email)
     }
 }

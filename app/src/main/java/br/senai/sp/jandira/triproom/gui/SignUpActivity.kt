@@ -3,6 +3,7 @@ package br.senai.sp.jandira.triproom.gui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,14 +13,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -342,7 +339,7 @@ fun saveUser(
     context: Context
 ) {
     //criando um objeto USER
-    val user = User(
+    val newUser = User(
         id = 0,
         username = userName,
         phone = phone,
@@ -353,10 +350,21 @@ fun saveUser(
     //criando uma instância do repositorio
     val userRepository = UserRepository(context)
 
-    //salvando o usuario
-    val id = userRepository.save(user)
+    //verificando se o  usuário já existe
+    val user = userRepository.findUserByEmail(email)
 
+    Log.i("ds2m", "${user.toString()}")
+
+    //salvando o usuario
+
+    if (user == null){
+        val id = userRepository.save(newUser)
         Toast.makeText(context, "$id", Toast.LENGTH_LONG).show()
+    }else{
+        Toast.makeText(context, "User alredy exists", Toast.LENGTH_LONG).show()
+    }
+
+
 
 
 }
