@@ -233,6 +233,8 @@ fun authenticateUser(
     if (user != null){
         Toast.makeText(context, "User alredy exists", Toast.LENGTH_LONG).show()
         val intent = Intent(context, LoggedActivity::class.java)
+        //passando o id pra outra activity
+        intent.putExtra("id", user.id)
         context.startActivity(intent)
     }else{
         Toast.makeText(context, "Email or password incorrect!", Toast.LENGTH_LONG).show()
