@@ -293,6 +293,7 @@ fun SignUpScreen() {
                                         email = userEmailState,
                                         password = userPasswordState,
                                         isOver18 = over18State,
+                                        profilePhotoUri = photoUriState?.path ?: "",
                                         context = context
                                     )
                                 },
@@ -366,6 +367,7 @@ fun saveUser(
     email: String,
     password: String,
     isOver18: Boolean,
+    profilePhotoUri: String,
     context: Context
 ) {
     //criando um objeto USER
@@ -375,7 +377,8 @@ fun saveUser(
         phone = phone,
         email = email,
         password = password,
-        isOver18 = isOver18
+        isOver18 = isOver18,
+        profilePhoto = profilePhotoUri
     )
     //criando uma instância do repositorio
     val userRepository = UserRepository(context)
