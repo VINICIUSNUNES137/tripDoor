@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -18,6 +20,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,6 +36,8 @@ import br.senai.sp.jandira.triproom.ui.theme.TripRoomTheme
 import br.senai.sp.jandira.triproom.R
 import br.senai.sp.jandira.triproom.model.User
 import br.senai.sp.jandira.triproom.repository.UserRepository
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 
 class SignUpActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,9 +69,23 @@ class SignUpActivity : ComponentActivity() {
 @Composable
 fun SignUpScreen() {
 
-    var fotoUriState by remember {
+    var photoUriState by remember {
         mutableStateOf<Uri?>(null)
     }
+
+    var launcher = rememberLauncherForActivityResult(
+        contract =  ActivityResultContracts.GetContent()
+    ) {
+        photoUriState = it
+    }
+
+
+    //cria a imagem com base na URI
+    var painter = rememberAsyncImagePainter(
+        ImageRequest.Builder(LocalContext.current)
+            .data(photoUriState)
+            .build()
+    )
 
     var userNameState by remember {
         mutableStateOf("")
@@ -125,8 +144,9 @@ fun SignUpScreen() {
                         backgroundColor = Color(160, 160, 160)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.baseline_person_24),
-                            contentDescription = ""
+                            painter = if (photoUriState == null) painterResource(id = R.drawable.baseline_person_24) else painter,
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop
                         )
                     }
                     Image(
@@ -134,6 +154,11 @@ fun SignUpScreen() {
                         contentDescription = "",
                         modifier = Modifier
                             .align(Alignment.BottomEnd)
+                            .clickable {
+                                launcher.launch("image/*")
+                                var message = "nada"
+                                Log.i("ds2m", "URI: ${photoUriState?.path ?: message}")
+                            }
                     )
                 }
                 Spacer(modifier = Modifier.height(32.dp))
@@ -299,7 +324,8 @@ fun SignUpScreen() {
             }
 
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .padding(end = 16.dp),
                 horizontalArrangement = Arrangement.End
             ) {
                 Text(

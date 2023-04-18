@@ -61,7 +61,10 @@ fun loggedScreen() {
                             )
                         }
                         Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
-                            Text(text = "You're in Paris", color = Color.White)
+                            Row(Modifier.fillMaxWidth()) {
+                                painterResource(id = R.drawable.location_on_24)
+                                Text(text = "You're in Paris", color = Color.White)
+                            }
                             Text(
                                 text = "My Trips",
                                 color = Color.White,
