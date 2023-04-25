@@ -16,7 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,11 +47,15 @@ fun loggedScreen() {
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
 
-            Card(modifier = Modifier.fillMaxWidth()) {
+            Card(modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp), shape = RectangleShape) {
                 Image(
                     painter = painterResource(id = R.drawable.paris),
                     contentDescription = "Paris",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    contentScale = ContentScale.Crop,
+
                 )
                 Column(modifier = Modifier.height(200.dp), verticalArrangement = Arrangement.SpaceBetween) {
 
@@ -56,16 +64,22 @@ fun loggedScreen() {
                             .fillMaxWidth()
                             .padding(13.dp), horizontalAlignment = Alignment.End
                     ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    
+
                         Card(shape = CircleShape, border = BorderStroke(2.dp, Color.White)) {
                             Image(
                                 painter = painterResource(id = R.drawable.susanna_profile),
                                 contentDescription = "",
-                                Modifier.width(61.dp)
+                                Modifier.width(61.dp),
+
                             )
                         }
+                            Text(text = "Susana", color = Color.White)
+                        }
                         Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
-                            Row(Modifier.fillMaxWidth()) {
-                                painterResource(id = R.drawable.location_on_24)
+                            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                                Image(painter = painterResource(id = R.drawable.location_on_24), contentDescription = "" )
                                 Text(text = "You're in Paris", color = Color.White)
                             }
                             Text(
@@ -79,6 +93,11 @@ fun loggedScreen() {
                     }
                 }
             }
+            Text(
+                text = stringResource(id = R.string.categories),
+                color = Color(56, 56, 54),
+                fontSize = 14.sp,
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp))
         }
 
     }
